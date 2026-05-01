@@ -229,7 +229,7 @@
 
       <div class="field">
         <label>Produit</label>
-        <select id="calc-prod" onchange="calcProdChange()">
+        <select id="calc-prod" onchange="calcProdChange()" oninput="calcProdChange()">
           <option value="phm-p">pH MINUS POUDRE</option>
           <option value="phm-l">pH MINUS LIQUIDE</option>
           <option value="php-p">pH PLUS POUDRE</option>
@@ -738,6 +738,11 @@
     const prod   = CALC_PRODUCTS[key];
     const resBox = document.getElementById('calc-result');
     const errBox = document.getElementById('calc-err');
+
+    // Toujours synchroniser les labels selon le produit actif
+    const [la, lc] = CALC_LABELS[prod.param];
+    document.getElementById('calc-lbl-a').textContent = la;
+    document.getElementById('calc-lbl-c').textContent = lc;
 
     resBox.style.display = 'none';
     errBox.style.display = 'none';
