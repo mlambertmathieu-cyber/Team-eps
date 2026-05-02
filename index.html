@@ -151,6 +151,37 @@
   .calc-detail { font-size:11px; color:var(--muted); margin-top:4px; }
   .calc-ph-impact { color:var(--green); font-size:12px; margin-top:6px; }
   .calc-error { color:var(--red); font-size:13px; margin-top:12px; padding:10px; background:rgba(255,58,92,0.08); border:1px solid rgba(255,58,92,0.2); border-radius:8px; }
+
+  /* ── LIVRE DE FORMATION ── */
+  .formation-header { padding:16px 0 8px; }
+  .formation-title { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; background:linear-gradient(90deg,var(--cyan),var(--blue)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:4px; }
+  .formation-sub { font-size:11px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; }
+  .chapter { margin-bottom:10px; border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+  .chapter-header { display:flex; align-items:center; gap:12px; padding:14px; background:var(--card); cursor:pointer; user-select:none; transition:background 0.2s; }
+  .chapter-header:active { background:rgba(0,212,255,0.05); }
+  .chapter-icon { font-size:22px; flex-shrink:0; }
+  .chapter-label { flex:1; }
+  .chapter-name { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; }
+  .chapter-desc { font-size:11px; color:var(--muted); margin-top:2px; }
+  .chapter-chevron { color:var(--muted); font-size:14px; transition:transform 0.25s; }
+  .chapter.open .chapter-chevron { transform:rotate(90deg); }
+  .chapter-body { display:none; border-top:1px solid var(--border); }
+  .chapter.open .chapter-body { display:block; }
+  .fiche { padding:14px; border-bottom:1px solid var(--border); }
+  .fiche:last-child { border-bottom:none; }
+  .fiche-title { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--cyan); margin-bottom:8px; }
+  .fiche-body { font-size:12px; color:var(--text); line-height:1.7; }
+  .fiche-body ul { padding-left:16px; margin:6px 0; }
+  .fiche-body li { margin-bottom:4px; }
+  .fiche-body strong { color:var(--cyan); }
+  .fiche-body .val { display:inline-block; background:rgba(0,212,255,0.08); border:1px solid rgba(0,212,255,0.2); border-radius:6px; padding:2px 8px; font-size:12px; color:var(--cyan); margin:2px 4px 2px 0; }
+  .fiche-body .warn { background:rgba(255,58,92,0.08); border:1px solid rgba(255,58,92,0.25); border-radius:8px; padding:8px 10px; color:var(--red); margin-top:8px; font-size:11px; }
+  .fiche-body .tip { background:rgba(0,232,122,0.06); border:1px solid rgba(0,232,122,0.2); border-radius:8px; padding:8px 10px; color:var(--green); margin-top:8px; font-size:11px; }
+  .fiche-body .info { background:rgba(255,214,0,0.06); border:1px solid rgba(255,214,0,0.2); border-radius:8px; padding:8px 10px; color:var(--yellow); margin-top:8px; font-size:11px; }
+  .table-form { width:100%; border-collapse:collapse; font-size:11px; margin-top:8px; }
+  .table-form th { background:rgba(0,212,255,0.08); color:var(--cyan); padding:6px 8px; text-align:left; font-weight:500; letter-spacing:0.8px; }
+  .table-form td { padding:6px 8px; border-top:1px solid var(--border); color:var(--text); vertical-align:top; }
+  .table-form tr:nth-child(even) td { background:rgba(255,255,255,0.02); }
 </style>
 </head>
 <body>
@@ -188,8 +219,9 @@
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('commandes')">📦 Commandes</button>
-    <button class="tab" onclick="switchTab('sav')">🔧 SAV / Interventions</button>
+    <button class="tab" onclick="switchTab('sav')">🔧 SAV</button>
     <button class="tab" onclick="switchTab('calc')">💊 Dosage</button>
+    <button class="tab" onclick="switchTab('formation')">📚 Formation</button>
   </div>
 
   <div class="section active" id="section-commandes">
@@ -268,10 +300,360 @@
     </div>
   </div>
 
+  <div class="section" id="section-formation">
+    <div class="formation-header">
+      <div class="formation-title">Livre de Formation</div>
+      <div class="formation-sub">Référence technique Team EPS</div>
+    </div>
+
+    <!-- CHAPITRE 1 : Traitement de l'eau -->
+    <div class="chapter" id="ch-eau">
+      <div class="chapter-header" onclick="toggleChapter('ch-eau')">
+        <span class="chapter-icon">💧</span>
+        <div class="chapter-label">
+          <div class="chapter-name">Traitement de l'eau</div>
+          <div class="chapter-desc">pH, TAC, chlore, algicides</div>
+        </div>
+        <span class="chapter-chevron">▶</span>
+      </div>
+      <div class="chapter-body">
+
+        <div class="fiche">
+          <div class="fiche-title">Valeurs cibles d'une eau équilibrée</div>
+          <div class="fiche-body">
+            <table class="table-form">
+              <tr><th>Paramètre</th><th>Valeur idéale</th><th>Unité</th></tr>
+              <tr><td>pH</td><td>7,2 – 7,4</td><td>—</td></tr>
+              <tr><td>TAC (alcalinité)</td><td>80 – 120</td><td>mg/L</td></tr>
+              <tr><td>Chlore libre</td><td>1 – 1,5</td><td>mg/L</td></tr>
+              <tr><td>Chlore combiné</td><td>&lt; 0,3</td><td>mg/L</td></tr>
+              <tr><td>Dureté (TH)</td><td>200 – 400</td><td>mg/L</td></tr>
+              <tr><td>Température</td><td>26 – 28</td><td>°C</td></tr>
+            </table>
+            <div class="tip">Toujours corriger le TAC avant le pH. Un TAC stable évite les variations de pH.</div>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Corriger le pH</div>
+          <div class="fiche-body">
+            <ul>
+              <li><strong>pH trop haut (&gt; 7,6)</strong> → pH MINUS poudre ou liquide</li>
+              <li><strong>pH trop bas (&lt; 7,0)</strong> → pH PLUS poudre ou liquide</li>
+            </ul>
+            Attendre <strong>4 heures</strong> minimum (filtration en marche) avant de remesurer.
+            <div class="warn">Ne jamais verser deux produits en même temps dans le bassin.</div>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Corriger le TAC</div>
+          <div class="fiche-body">
+            <ul>
+              <li><strong>TAC trop bas</strong> → ALCAFIX (bicarbonate de sodium)<br>Dose indicative : <span class="val">2 g / m³ / 10 mg/L à augmenter</span></li>
+              <li><strong>TAC trop haut</strong> → Dilution par renouvellement partiel de l'eau</li>
+            </ul>
+            <div class="info">Mesurer le TAC toutes les 2 semaines en saison.</div>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Chloration</div>
+          <div class="fiche-body">
+            <ul>
+              <li><strong>Choc chlore (PCH granulé)</strong> : <span class="val">10 g / m³</span> — en début de saison ou après baignade intense</li>
+              <li><strong>Entretien (V60 granulé)</strong> : <span class="val">2 – 3 g / m³ / sem</span></li>
+              <li>Verser le soir, filtration allumée, sans baigneurs</li>
+            </ul>
+            <div class="warn">pH entre 7,2 et 7,4 pour une efficacité optimale du chlore.</div>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Traitement anti-algues</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Traitement préventif hebdomadaire en pleine saison</li>
+              <li>Choc algicide si l'eau vire au vert : doubler la dose + brossage + filtration H24 pendant 48h</li>
+              <li>Vérifier et nettoyer le filtre après un choc</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CHAPITRE 2 : Filtration & équipements -->
+    <div class="chapter" id="ch-filtre">
+      <div class="chapter-header" onclick="toggleChapter('ch-filtre')">
+        <span class="chapter-icon">⚙️</span>
+        <div class="chapter-label">
+          <div class="chapter-name">Filtration & Équipements</div>
+          <div class="chapter-desc">Pompes, filtres à sable, skimmers</div>
+        </div>
+        <span class="chapter-chevron">▶</span>
+      </div>
+      <div class="chapter-body">
+
+        <div class="fiche">
+          <div class="fiche-title">Durée de filtration quotidienne</div>
+          <div class="fiche-body">
+            Règle simple : <strong>Température de l'eau ÷ 2 = heures de filtration / jour</strong>
+            <table class="table-form">
+              <tr><th>Temp. eau</th><th>Filtration</th></tr>
+              <tr><td>20 °C</td><td>10 h/jour</td></tr>
+              <tr><td>24 °C</td><td>12 h/jour</td></tr>
+              <tr><td>28 °C</td><td>14 h/jour</td></tr>
+              <tr><td>&gt; 30 °C</td><td>24 h/jour</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Contre-lavage du filtre à sable</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Fréquence : toutes les <strong>3 à 4 semaines</strong> (ou si pression manomètre + 0,3 bar)</li>
+              <li>Durée lavage : <strong>2 min</strong> en position BACKWASH</li>
+              <li>Rinçage : <strong>30 sec</strong> en position RINSE</li>
+              <li>Remettre sur FILTRE, vérifier l'étanchéité de la vanne 6 voies</li>
+            </ul>
+            <div class="warn">Ne jamais changer la position de la vanne 6 voies avec la pompe en marche.</div>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Remplacement du sable</div>
+          <div class="fiche-body">
+            Tous les <strong>5 à 7 ans</strong>. Utiliser du sable siliceux calibre <span class="val">0,4 – 0,8 mm</span>.
+            <ul>
+              <li>Ne jamais remplir à plus de 2/3 de la cuve</li>
+              <li>Rincer abondamment avant la première mise en route</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Nettoyage du préfiltre de pompe</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Vérifier et vider le panier hebdomadairement en saison</li>
+              <li>Couper la pompe avant d'ouvrir le couvercle</li>
+              <li>Relubrifier le joint torique avec de la vaseline (jamais de corps gras)</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CHAPITRE 3 : Installation & pose -->
+    <div class="chapter" id="ch-install">
+      <div class="chapter-header" onclick="toggleChapter('ch-install')">
+        <span class="chapter-icon">🏗️</span>
+        <div class="chapter-label">
+          <div class="chapter-name">Installation & Pose</div>
+          <div class="chapter-desc">Liner, raccordements, mise en eau</div>
+        </div>
+        <span class="chapter-chevron">▶</span>
+      </div>
+      <div class="chapter-body">
+
+        <div class="fiche">
+          <div class="fiche-title">Pose d'un liner</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Température idéale de pose : <strong>&gt; 20 °C</strong> (liner plus souple)</li>
+              <li>Vérifier l'absence de corps étrangers, aspérités ou humidité sur les parois</li>
+              <li>Tirer le liner depuis le centre vers les bords, sans forcer</li>
+              <li>Coincer en feuillure ou rail agrafe avant de remplir</li>
+              <li>Remplir progressivement tout en ajustant les plis</li>
+            </ul>
+            <div class="info">Ne jamais couper les découpes (skimmer, bonde de fond) avant que le bassin soit à moitié plein.</div>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Raccordement hydraulique</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Sens de circulation : <strong>skimmer → pompe → filtre → refoulement</strong></li>
+              <li>Utiliser du téflon sur tous les filetages, serrer à la main + 1/4 de tour clé</li>
+              <li>Vérifier l'étanchéité à la mise en eau avant toute finition</li>
+              <li>Prévoir des vannes d'isolement sur chaque circuit</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Mise en eau & premier traitement</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Remplir avec eau du réseau (ne jamais eau de pluie directe)</li>
+              <li>Dès 3/4 plein : démarrer la filtration</li>
+              <li>Mesurer pH et TAC → corriger le TAC en premier</li>
+              <li>Choc chlore initial : <span class="val">10 g/m³ de PCH</span></li>
+              <li>Attendre 24h avant la première baignade</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CHAPITRE 4 : SAV & Dépannage -->
+    <div class="chapter" id="ch-sav">
+      <div class="chapter-header" onclick="toggleChapter('ch-sav')">
+        <span class="chapter-icon">🔧</span>
+        <div class="chapter-label">
+          <div class="chapter-name">SAV & Dépannage</div>
+          <div class="chapter-desc">Diagnostics et solutions courantes</div>
+        </div>
+        <span class="chapter-chevron">▶</span>
+      </div>
+      <div class="chapter-body">
+
+        <div class="fiche">
+          <div class="fiche-title">Eau trouble ou laiteuse</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Vérifier le pH (doit être 7,2–7,4)</li>
+              <li>Vérifier la filtration (durée, contre-lavage récent ?)</li>
+              <li>Manque de chlore → choc chlore 10 g/m³</li>
+              <li>Si persistant : clarif­iant (floculant) + backwash 24h après</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Eau verte</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Prolifération d'algues → chlore libre trop bas (&lt; 0,5 mg/L)</li>
+              <li>Choc chlore double dose : <span class="val">20 g/m³ de PCH</span></li>
+              <li>Filtration H24 pendant 48–72h</li>
+              <li>Brossage quotidien des parois</li>
+              <li>Nettoyer le filtre après retour à la normale</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Fuite détectée</div>
+          <div class="fiche-body">
+            <ul>
+              <li><strong>Test bouteille</strong> : remplir un récipient à bord du bassin. Si baisse identique → évaporation. Si bassin baisse plus → fuite</li>
+              <li>Inspecter d'abord les traversées de paroi (skimmer, refoulement, bonde)</li>
+              <li>Vérifier les raccords et vannes côté local technique</li>
+              <li>Fuite liner : kit de réparation sous eau (colle + patch) si liner en bon état</li>
+            </ul>
+            <div class="warn">Couper la filtration en cas de doute sur une fuite importante avant d'investiguer.</div>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Pompe ne démarre pas</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Vérifier l'alimentation électrique et le disjoncteur</li>
+              <li>Contrôler le condensateur (démarrage difficile = condensateur HS)</li>
+              <li>Vider le préfiltre si obstrué</li>
+              <li>Vérifier qu'il y a de l'eau dans le corps de pompe (amorçage)</li>
+            </ul>
+            <div class="tip">En cas de surchauffe, la pompe peut se couper automatiquement. Laisser refroidir 15 min avant de redémarrer.</div>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Manque d'aspiration / débit faible</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Panier préfiltre obstrué → nettoyer</li>
+              <li>Skimmer(s) obstrué(s) → nettoyer les paniers</li>
+              <li>Vanne(s) partiellement fermée(s) → vérifier les positions</li>
+              <li>Filtre colmaté → contre-lavage</li>
+              <li>Bague mécanique usée → remplacement pompe</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CHAPITRE 5 : Sécurité -->
+    <div class="chapter" id="ch-secu">
+      <div class="chapter-header" onclick="toggleChapter('ch-secu')">
+        <span class="chapter-icon">🦺</span>
+        <div class="chapter-label">
+          <div class="chapter-name">Sécurité</div>
+          <div class="chapter-desc">EPI, produits chimiques, électricité</div>
+        </div>
+        <span class="chapter-chevron">▶</span>
+      </div>
+      <div class="chapter-body">
+
+        <div class="fiche">
+          <div class="fiche-title">EPI obligatoires</div>
+          <div class="fiche-body">
+            <ul>
+              <li><strong>Manipulation produits chimiques</strong> : gants nitrile + lunettes de protection</li>
+              <li><strong>Travaux en hauteur</strong> : harnais si &gt; 3 m</li>
+              <li><strong>Chantier terrassement</strong> : chaussures de sécurité S3</li>
+              <li><strong>Découpe / meulage</strong> : masque FFP2 + lunettes + gants</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Manipulation des produits chimiques</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Ne jamais mélanger chlore et pH MINUS (réaction violente)</li>
+              <li>Toujours verser le produit dans l'eau, jamais l'eau dans le produit</li>
+              <li>Stocker dans un endroit sec, ventilé, à l'abri de la lumière</li>
+              <li>Tenir à l'écart des enfants et des sources de chaleur</li>
+            </ul>
+            <div class="warn">En cas de contact yeux : rincer abondamment à l'eau claire pendant 15 min et consulter un médecin.</div>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Sécurité électrique</div>
+          <div class="fiche-body">
+            <ul>
+              <li>Toute installation électrique doit respecter la norme <strong>NF C 15-100</strong> (volumes de protection)</li>
+              <li>Coffret électrique étanche IP65 minimum</li>
+              <li>Disjoncteur différentiel 30 mA obligatoire</li>
+              <li>Ne jamais intervenir sur une installation sous tension</li>
+            </ul>
+            <div class="info">Volume 0 (dans l'eau) : matériel TBT 12V max. Volume 1 (bord immédiat) : interdit tout appareil électrique sauf luminaires dédiés.</div>
+          </div>
+        </div>
+
+        <div class="fiche">
+          <div class="fiche-title">Norme piscine privée (sécurité baigneurs)</div>
+          <div class="fiche-body">
+            La loi impose au moins un des 4 équipements suivants pour toute piscine enterrée privative :
+            <ul>
+              <li>Barrière de sécurité normée (NF P90-306)</li>
+              <li>Alarme de piscine (NF P90-307)</li>
+              <li>Couverture de sécurité (NF P90-308)</li>
+              <li>Abri de piscine</li>
+            </ul>
+            <div class="warn">Toujours informer le client de cette obligation légale et noter son choix dans le dossier chantier.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /section-formation -->
+
   <nav class="bottom-nav">
     <button class="nav-item active" id="nav-commandes" onclick="switchTab('commandes')"><span class="nav-icon">📦</span>Commandes</button>
     <button class="nav-item" id="nav-sav" onclick="switchTab('sav')"><span class="nav-icon">🔧</span>SAV</button>
     <button class="nav-item" id="nav-calc" onclick="switchTab('calc')"><span class="nav-icon">💊</span>Dosage</button>
+    <button class="nav-item" id="nav-formation" onclick="switchTab('formation')"><span class="nav-icon">📚</span>Formation</button>
   </nav>
 </div>
 
@@ -806,6 +1188,12 @@
   let tx=0;
   document.getElementById('lightbox').addEventListener('touchstart', e => { tx=e.touches[0].clientX; });
   document.getElementById('lightbox').addEventListener('touchend', e => { const d=tx-e.changedTouches[0].clientX; if(Math.abs(d)>50) lbNav(d>0?1:-1); });
+
+  // ── LIVRE DE FORMATION ───────────────────────────────────────
+  function toggleChapter(id) {
+    const ch = document.getElementById(id);
+    ch.classList.toggle('open');
+  }
 </script>
 </body>
 </html>
